@@ -13,6 +13,10 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
   const {publishError, publishSuccess} = useToastProvider();
+  const maxUsernameLength = 20;
+  const maxPasswordLength = 20;
+  const minUsernameLength = 3;
+  const minPasswordLength = 3;
 
   function handleUsernameChange(inputValue){
     setUsernameInputField(inputValue);
@@ -21,6 +25,13 @@ function Login() {
   function handlePasswordChange(inputValue){
     setPasswordInputField(inputValue);
     console.log(passwordInputField)
+  }
+
+  function isLoginFormValid(){
+    return !(
+      (usernameInputField.length > minUsernameLength && passwordInputField.length > minPasswordLength)  &&
+      (usernameInputField.length < maxUsernameLength && passwordInputField.length < maxPasswordLength)
+      );
   }
 
   async function handleLogin() {
@@ -40,8 +51,13 @@ function Login() {
         navigate("/products");
       }
     } catch (error) {
+      if(error?.response && error.response.status == 401){
+        setIsLoading(false);
+        publishError("Neuspesan login, korisnicko ime ili sifra nisu ispravni");
+        return 
+      }
       setIsLoading(false);
-      publishError("Neuspesan login, mozda je do korisnickog imena ili sifre")
+      publishError("Neuspesan login, doslo je do greske na serveru, pokusajte kasnije");
 
     }
   }
@@ -53,7 +69,7 @@ function Login() {
             <h1 className={styles.title}>Dobrodosli u refurbished svet</h1>
             <InputField placeholder="Unesi korisnicko ime" onChange={handleUsernameChange} value= {usernameInputField} isWidth100={true} />
             <InputField placeholder="Unesi lozinku" onChange={handlePasswordChange} value= {passwordInputField} isPasswordField = {true} isWidth100={true}/>
-            <button className={styles.loginButton} onClick={handleLogin}>Login</button>
+            <button disabled={isLoginFormValid()}  className={styles.loginButton} onClick={handleLogin}>Login</button>
             {isLoading && <LoadingSpinner/>}
         </main>
     </div>

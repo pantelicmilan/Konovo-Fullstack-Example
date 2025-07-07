@@ -12,6 +12,8 @@ async def get_jwt_token(username: str, password: str) -> str:
             "username": username,
             "password": password
         })
+    if response.status_code == 401:
+        raise HTTPException(status_code=401, detail="Invalid username or password.")
 
     if response.status_code != 200:
         raise Exception(f"Login failed: {response.status_code} - {response.text}")

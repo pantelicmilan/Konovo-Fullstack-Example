@@ -43,6 +43,11 @@
     width: 100%;	
 }
 
+.loginButton:disabled {
+    opacity: 0.5;
+    cursor:not-allowed;
+}
+  
 .loginButton:hover, .loginButton:active{
     transition: .2s;
     background-color: var(--orange-hover);

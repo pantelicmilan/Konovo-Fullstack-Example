@@ -1,0 +1,9 @@
+.inputField{
+    padding:var(--big-input-padding);
+    border-radius: var(--soft-rounded-edges);
+    font-size: var(--big-input-size);
+    background-color: var(--white-neutral);
+    color: var(--gray-800);
+}
+
+

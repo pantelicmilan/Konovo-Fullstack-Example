@@ -1,0 +1,129 @@
+.productCardsWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.exploreWrapper{
+    background-color: var(--gray-800);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+}
+
+.searchWrapper{
+    display: flex;
+    gap:1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterWrapper{
+    display: flex;
+    gap:.5rem;
+    align-items: center;
+    justify-content: center;
+
+    select{
+        font-size: 1.3rem;
+        background-color: var(--white-neutral);
+        padding: 1rem;
+        border-radius: 1rem;
+        color: var(--gray-900);
+        option{
+            color: var(--gray-900);
+        }
+    }
+}
+
+.searchIconWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: var(--primary-orange);
+}
+
+.searchIcon{
+    margin: 1rem;
+}
+
+.productWrapper{
+    margin-left:3rem;
+    margin-right: 3rem;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.productsWrapper{
+    background-color: var(--gray-100);
+}
+
+.text{
+    text-align: center;
+    font-size: 2rem;
+    margin:1rem;
+}
+
+.paginationBarWrapper{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1.8rem;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.paginationButton{
+    background-color: var(--primary-orange);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.pageNumber{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.paginationButton img{
+    width: 30px;
+    height: 30px;
+}
+
+.paginationButton:hover, .paginationButton:active{
+    transition: .2s;
+    cursor: pointer;
+    background-color: var(--orange-hover);
+}
+
+.spinnerWrapper{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translateY(-50%);
+}
+
+.searchIconWrapper:hover, .searchIconWrapper:active{
+    cursor: pointer;
+    transition: .2s;
+    background-color: var(--orange-hover);
+}
+
+
+@media(max-width: 400px){
+    .productWrapper{
+        margin-left:0.5rem;
+        margin-right: 0.5rem;
+    }
+}

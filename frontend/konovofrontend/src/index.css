@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+  font-family: 'Inter', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+/* 1. Reset margina, paddinga i box-sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+/* 2. Reset fonta i podrazumevanih stilova */
+html, body {
+  height: 100vH;
+  font-family: sans-serif;
+  line-height: 1.5;
+  background-color: #fff;
+  ;
+  color: #111827;
+}
+
+/* 3. Uklanjanje stilova sa listi */
+ul, ol {
+  list-style: none;
+}
+
+/* 4. Linkovi bez podvlačenja */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 5. Uklanjanje border-a sa formi */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* 6. Dugmad da ne nasleđuju čudne stilove */
+button {
+  cursor: pointer;
+  background: none;
+}
+
+/* 7. Slike da se ponašaju normalno */
+img {
+  max-width: 100%;
+  display: block;
+}

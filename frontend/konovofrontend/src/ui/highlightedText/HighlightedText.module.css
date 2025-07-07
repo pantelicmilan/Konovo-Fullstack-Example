@@ -1,0 +1,17 @@
+.specificationBar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+    background-color: var(--primary-orange);
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    min-width: 100px;
+    h3{
+        color: var(--gray-50);
+    }
+}

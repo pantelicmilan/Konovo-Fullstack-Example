@@ -1,0 +1,28 @@
+  .spinner {
+    width: 28px;
+    height: 28px;
+    border: 4px solid var(--gray-200); /* siva pozadina kruga */
+    border-top: 4px solid var(--primary-orange); /* narandžasti vrh */
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin: 0 auto; /* centriranje */
+  }
+  
+  .loadingSpinnerWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    transition: 1s;
+    padding: 1rem;
+    background-color: var(--gray-400);
+    border-radius: var(--soft-rounded-edges);
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+

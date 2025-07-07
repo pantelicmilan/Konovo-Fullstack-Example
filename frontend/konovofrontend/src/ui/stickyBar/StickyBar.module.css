@@ -1,0 +1,32 @@
+.stickyBarWrapper{
+    background-color: var(--gray-900);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.9rem;
+    align-items: center;
+}
+
+.logo{
+    width: 100px;
+    height: 20px;
+}
+
+.logOutButton{
+    background-color: var(--primary-orange);
+    border: none;
+    cursor: pointer;
+    color: var(--white-neutral);
+    font-size: var(--logout-font-size);
+    font-weight: bold;
+    padding: .6rem;
+    border-radius: var(--soft-rounded-edges);
+}
+
+.logOutButton:hover, .logOutButton:active{
+    transition: .2s;
+    background-color: var(--orange-hover);
+}
+
+body{
+    background-color: var(--gray-100);
+}

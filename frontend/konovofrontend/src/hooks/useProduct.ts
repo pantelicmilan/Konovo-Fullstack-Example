@@ -31,7 +31,5 @@ export function useProduct(id){
         },  
         staleTime: 1000 * 60 * 60,
 
-
-
     })
 }

@@ -30,7 +30,11 @@ function App() {
 
         }>
         <Routes>
-          <Route path = "/login" element={<Login />} />
+          <Route path = "/login" element={
+            <ProtectedRoute>
+              <Login />
+            </ProtectedRoute> 
+            } />
           <Route path = "/products" element={
             <ProtectedRoute>
               <Products />

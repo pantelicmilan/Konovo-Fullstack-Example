@@ -27,6 +27,8 @@ export function useProduct(id){
               publishError("Proizvod nije pronadjen pa smo te preusmerili na stranicu svih proizvoda");
               navigate("/products")
             }
+
+            throw e;
           }
         },  
         staleTime: 1000 * 60 * 60,

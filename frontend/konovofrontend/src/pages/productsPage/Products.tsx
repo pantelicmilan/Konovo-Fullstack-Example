@@ -49,8 +49,6 @@ export const Products = () => {
   return (
 
     <div className={styles.productsWrapper}>
-
-      {products?.length == 0 && <p style={{color:"red"}}>XAXAXAXAXAX</p> }
       <StickyBar/>
       <div className={styles.exploreWrapper}>
         <div className={styles.searchWrapper}>
@@ -69,7 +67,7 @@ export const Products = () => {
           </select>
         </div>
       </div>
-      {!isProductsLoading ? <h3 className={styles.text}> Rezultati: </h3> : null}
+      {!isProductsLoading && products?.length > 0 ? <h3 className={styles.text}> Rezultati: </h3> : null}
       {isProductsLoading ? <div className={styles.spinnerWrapper}><LoadingSpinner/></div> : null}
 
       <main className={styles.productWrapper}>
@@ -86,6 +84,21 @@ export const Products = () => {
 
         ))}
       </main>
+
+      {!isProductsLoading && products?.length == 0 &&  (
+          <h3
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              fontSize: '50px',
+            }}
+          >
+            404, Ne postoje proizvodi :(
+          </h3>
+      )}
+
       {!isProductsLoading && 
             <div className={styles.paginationBarWrapper}>
             {pageNumber > 1 && <div onClick={handlePageMinus} className={styles.paginationButton}><img src="/icons/leftArrow.svg" alt="" /></div>}

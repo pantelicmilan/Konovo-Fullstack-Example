@@ -1,4 +1,6 @@
 from typing import List, Union
+
+from fastapi import HTTPException
 from konovoapi.schemas.product import Product
 from konovoapi.services.external_api_service import fetch_products
 from konovoapi.services.product_service import process_products
@@ -34,6 +36,5 @@ async def get_all_products_usecase(
             start_index = (page - 1) * items_per_page
             end_index = start_index + items_per_page
             products = products[start_index:end_index]
-
     return process_products(products)
 

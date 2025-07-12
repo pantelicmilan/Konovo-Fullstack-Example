@@ -95,7 +95,7 @@ export const Products = () => {
               fontSize: '50px',
             }}
           >
-            404, Ne postoje proizvodi :(
+            Ne postoje proizvodi :(
           </h3>
       )}
 

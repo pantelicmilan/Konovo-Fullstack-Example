@@ -1,7 +1,5 @@
 import re
-from typing import Optional
 
-from fastapi import Request
 from konovoapi.schemas.product import Product
 
 price_multiplicator_for_specific_category = 1.10
@@ -32,9 +30,3 @@ def process_product(product: Product) -> Product:
         "description": updated_description,
         "price": updated_price
     })
-
-def get_jwt_cookie(request: Request, cookie_name: str = "Authorization") -> Optional[str]:
-    auth_value = request.cookies.get(cookie_name)
-    if auth_value and auth_value.startswith("Bearer "):
-        return auth_value[len("Bearer "):]
-    return auth_value  # vrati ceo string ako nema "Bearer ", ili None ako kolačić ne postoji

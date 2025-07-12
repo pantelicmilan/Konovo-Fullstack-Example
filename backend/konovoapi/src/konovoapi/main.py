@@ -1,6 +1,8 @@
 from typing import Union
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from konovoapi.exceptions.invalid_credentials_exception import InvalidCredentialsException
+from konovoapi.exceptions.unauthorized_user_exception import UnauthorizedUserException
 from konovoapi.middlewares import global_exception_handler
 from konovoapi.schemas.login_input import LoginInput
 from konovoapi.services.product_service import process_product
@@ -38,8 +40,12 @@ bearer_scheme = HTTPBearer()
 
 @app.post("/login")
 async def read_root(input: LoginInput):
-    token = await login(input.username, input.password)
-    return {"access_token": token}
+    try:
+        token = await login(input.username, input.password)
+        return {"access_token": token}
+    except InvalidCredentialsException as e:
+        raise HTTPException(status_code=401, detail="Invalid username or password.")
+    
 
 @app.get("/products")
 async def get_products(
@@ -48,8 +54,11 @@ async def get_products(
     search_term: Union[str, None] = None, 
     page_number = Union[str, None]
 ):
-    token = credentials.credentials
-    return await get_all_products_usecase(token, category_id, search_term, page_number)
+    try:
+        token = credentials.credentials
+        return await get_all_products_usecase(token, category_id, search_term, page_number)
+    except UnauthorizedUserException as e:
+        raise HTTPException(status_code=401, detail="Invalid or expired token.")
 
 @app.get("/products/{product_id}")
 async def get_product_by_id(
@@ -65,6 +74,8 @@ async def get_product_by_id(
 
 @app.get("/categories")
 async def get_categories():
-    if not app.state.cached_categories:
-        raise HTTPException(status_code=404, detail="No categories found")
+    if app.state.cached_categories:
+        return app.state.cached_categories
+    categories = await get_all_categories_usecase()
+    app.state.cached_categories = categories
     return app.state.cached_categories

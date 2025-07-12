@@ -1,6 +1,7 @@
-from fastapi import HTTPException
 import httpx
 
+from konovoapi.exceptions.invalid_credentials_exception import InvalidCredentialsException
+from konovoapi.exceptions.unauthorized_user_exception import UnauthorizedUserException
 from konovoapi.schemas.product import Product
 
 LOGIN_URL = "https://zadatak.konovo.rs/login"
@@ -13,7 +14,7 @@ async def get_jwt_token(username: str, password: str) -> str:
             "password": password
         })
     if response.status_code == 401:
-        raise HTTPException(status_code=401, detail="Invalid username or password.")
+        raise InvalidCredentialsException()
 
     if response.status_code != 200:
         raise Exception(f"Login failed: {response.status_code} - {response.text}")
@@ -35,7 +36,7 @@ async def fetch_products(token: str) -> list[Product]:
         response = await client.get(PRODUCTS_URL, headers=headers)
 
     if response.status_code == 401:
-        raise HTTPException(status_code=401, detail="Invalid or expired token.")
+        raise UnauthorizedUserException()
     elif response.status_code != 200:
         raise Exception(f"Failed to fetch products: {response.status_code} - {response.text}")
 

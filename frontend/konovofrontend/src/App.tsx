@@ -5,7 +5,6 @@ import { Product } from './pages/productPage/Product'
 import { Products } from './pages/productsPage/Products'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ProtectedRoute } from './ProtectedRoute'
-import { useToastProvider } from './ToastProvider'
 import { Toaster } from 'react-hot-toast'
 
 function App() {
